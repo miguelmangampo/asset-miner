@@ -14,7 +14,8 @@ import {
 
 const SOURCE_ID = 1;
 const BDO_URL = 'https://www.bdo.com.ph';
-const DETAIL_URL = 'https://www.bdo.com.ph/personal/assets-for-sale/real-estate/details-page';
+const REAL_STATE_URL = 'https://www.bdo.com.ph/personal/assets-for-sale/real-estate';
+const DETAIL_URL = `${REAL_STATE_URL}/details-page`;
 const LIST_URL = 'https://www.bdo.com.ph/content/bdounibank/en-ph/personal/assets-for-sale/real-estate/results-page.productListing.json?modelName=pmu-real-estate&buttonType=viewDetail&searchFullText=&pageSize=100000&offSet=0&sortBy=jcr%3AlastModified&sortOrder=desc';
 // Note. We can get this query string in BDO site by ticking metro manila and all its cities
 const LOCATIONS = {
@@ -105,7 +106,7 @@ const mergeData = async (dbData) => {
   let retries = 3; // Retry up to 3 times
   while (retries > 0) {
     try {
-      apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`);
+      apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`, REAL_STATE_URL);
       break;
     } catch (error) {
       console.error(`Fetch failed, retrying in 5 seconds... (${retries} retries left)`, error);

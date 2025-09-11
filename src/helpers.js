@@ -39,7 +39,7 @@ const isEqual = (
   return _.isEqual(obj1Subset, obj2Subset);
 }
 
-const fetchUnidici = async (url) => {
+const fetchUnidici = async (url, referer) => {
   try {
     console.log("Trying undici fetch...");
     const res = await undiciFetch(url, {
@@ -48,14 +48,14 @@ const fetchUnidici = async (url) => {
         "Accept": "application/json, text/plain, */*",
         "Accept-Encoding": "gzip, deflate, br",
         "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://www.bdo.com.ph/personal/assets-for-sale/real-estate",
+        "Referer": referer,
       },
     });
 
     const data = await res.json();
     return data;
   } catch (err) {
-    console.error("Undici failed:", err.message);
+    console.error("Undici failed:", err);
     return null
   }
 };
