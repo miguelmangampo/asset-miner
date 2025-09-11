@@ -124,10 +124,13 @@ const mergeData = async (dbData) => {
       }
     }
     count++;
+
+    await delay(process.env?.BDO_ACTION_TIMEOUT || 1000);
   }
 };
 
 export const startSync = async () => {
+  console.log('BDO - Data sync. started')
   const dbList = await getBySourceId(SOURCE_ID);
   await mergeData(dbList);
   return true;
