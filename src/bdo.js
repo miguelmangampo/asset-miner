@@ -19,11 +19,242 @@ const DETAIL_URL = `${REAL_STATE_URL}/details-page`;
 const LIST_URL = 'https://www.bdo.com.ph/content/bdounibank/en-ph/personal/assets-for-sale/real-estate/results-page.productListing.json?modelName=pmu-real-estate&buttonType=viewDetail&searchFullText=&pageSize=100000&offSet=0&sortBy=jcr%3AlastModified&sortOrder=desc';
 // Note. We can get this query string in BDO site by ticking metro manila and all its cities
 const LOCATIONS = {
-  // 'Metro Manila': ['Las Piñas City', 'Makati City', 'Malabon City', 'Mandaluyong City', 'Manila City', 'Marikina City', 'Muntinlupa City', 'Parañaque City', 'Pasay City', 'Pasig City', 'Quezon City', 'Taguig City', 'Valenzuela City'],
-  // 'Luzon': ['Cavite'],
+  'Metro Manila': ['Las Piñas City', 'Makati City', 'Malabon City', 'Mandaluyong City', 'Manila City', 'Marikina City', 'Muntinlupa City', 'Parañaque City', 'Pasay City', 'Pasig City', 'Quezon City', 'Taguig City', 'Valenzuela City'],
+  'Luzon': ['Cavite'],
 
-  'Metro Manila': ['Las Piñas City'],
+  // 'Metro Manila': ['Las Piñas City'],
 };
+
+const repList =  [
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/R-2024002253.jpg",
+      "path": "?propertyCode=R-2024002253",
+      "title": "Townhouse in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 2,500,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "84.5 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "52.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    },
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/R-2024001186.jpg",
+      "path": "?propertyCode=R-2024001186",
+      "title": "Condominium Unit in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 2,635,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "24.3 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "0.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    },
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/FieldResidences.jpg",
+      "path": "?propertyCode=R-2024002039",
+      "title": "Condominium Unit in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 2,819,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "28.19 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "0.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    },
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/FieldResidences.jpg",
+      "path": "?propertyCode=R-2024002038",
+      "title": "Condominium Unit in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 2,819,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "28.19 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "0.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    },
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/R-2024001638.jpg",
+      "path": "?propertyCode=R-2024001638",
+      "title": "Condominium Unit in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 2,480,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "24.3 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "0.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    },
+    {
+      "tagList": [
+        {
+          "tagColor": "#009D12",
+          "tag": "Sale"
+        }
+      ],
+      "image": "/content/dam/bdounibank/en-ph/mcg-digital-marketing/asset-for-sale/real-estate/R-2024001580.jpg",
+      "path": "?propertyCode=R-2024001580",
+      "title": "Condominium Unit in Las Piñas City",
+      "elementList": [
+        {
+          "dataList": [],
+          "icon": "home_loan-outline",
+          "title": "Type",
+          "value": "Residential"
+        },
+        {
+          "dataList": [],
+          "icon": "tag_outline",
+          "title": "Advertised Price",
+          "value": "PHP 3,920,000.00"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Floor Area",
+          "value": "49.0 sqm. Floor Area"
+        },
+        {
+          "dataList": [],
+          "icon": "business_building-outline",
+          "title": "Lot Area",
+          "value": "0.0 sqm. Lot Area"
+        }
+      ],
+      "value": {}
+    }
+  ];
 
 const makeParamLocations = () => {
   let url = '';
@@ -102,23 +333,8 @@ const getDetails = async ({
 
 const mergeData = async (dbData) => {
   const dbMap = new Map(dbData.map(item => [item.link, item]));
-  let apiResponse;
-  let retries = 3; // Retry up to 3 times
-  while (retries > 0) {
-    try {
-      apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`, REAL_STATE_URL);
-      break;
-    } catch (error) {
-      console.error(`Fetch failed, retrying in 5 seconds... (${retries} retries left)`, error);
-      retries--;
-      await delay(5000);
-      if (retries === 0) {
-        throw new Error('Failed to fetch data after multiple retries.');
-      }
-    }
-  }
-
-  const { repList = [] } = apiResponse;
+  // const apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`, REAL_STATE_URL);
+  // const { repList = [] } = apiResponse;
 
   let count = 1;
   for (const dt of repList) {
