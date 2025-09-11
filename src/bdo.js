@@ -17,8 +17,10 @@ const DETAIL_URL = 'https://www.bdo.com.ph/personal/assets-for-sale/real-estate/
 const LIST_URL = 'https://www.bdo.com.ph/content/bdounibank/en-ph/personal/assets-for-sale/real-estate/results-page.productListing.json?modelName=pmu-real-estate&buttonType=viewDetail&searchFullText=&pageSize=100000&offSet=0&sortBy=jcr%3AlastModified&sortOrder=desc';
 // Note. We can get this query string in BDO site by ticking metro manila and all its cities
 const LOCATIONS = {
-  'Metro Manila': ['Las Piñas City', 'Makati City', 'Malabon City', 'Mandaluyong City', 'Manila City', 'Marikina City', 'Muntinlupa City', 'Parañaque City', 'Pasay City', 'Pasig City', 'Quezon City', 'Taguig City', 'Valenzuela City'],
-  'Luzon': ['Cavite']
+  // 'Metro Manila': ['Las Piñas City', 'Makati City', 'Malabon City', 'Mandaluyong City', 'Manila City', 'Marikina City', 'Muntinlupa City', 'Parañaque City', 'Pasay City', 'Pasig City', 'Quezon City', 'Taguig City', 'Valenzuela City'],
+  // 'Luzon': ['Cavite'],
+
+  'Metro Manila': ['Las Piñas City'],
 };
 
 const makeParamLocations = () => {
