@@ -19,6 +19,7 @@ const initBrowserPage = async(headless = true) => {
       '--disable-gpu',
       '--disable-dev-shm-usage',
     ], // args if we're going to deploy in render or heroku 
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome",
   });
 
   const PAGE_TIMEOUT = 120000;
