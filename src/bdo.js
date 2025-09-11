@@ -100,7 +100,22 @@ const getDetails = async ({
 
 const mergeData = async (dbData) => {
   const dbMap = new Map(dbData.map(item => [item.link, item]));
-  const apiResponse = await fetch(`${LIST_URL}${makeParamLocations()}`);
+  let apiResponse;
+  let retries = 3; // Retry up to 3 times
+  while (retries > 0) {
+    try {
+      apiResponse = await fetch(`${LIST_URL}${makeParamLocations()}`);
+      break;
+    } catch (error) {
+      console.error(`Fetch failed, retrying in 5 seconds... (${retries} retries left)`, error);
+      retries--;
+      await delay(30000);
+      if (retries === 0) {
+        throw new Error('Failed to fetch data after multiple retries.');
+      }
+    }
+  }
+
   const { repList = [] } = await apiResponse.json();
 
   let count = 1;
