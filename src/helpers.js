@@ -12,7 +12,12 @@ const supabase = createClient(
 const initBrowserPage = async(headless = true) => {
   const browser = await puppeteer.launch({
     headless,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], // args if we're going to deploy in render or heroku 
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+    ], // args if we're going to deploy in render or heroku 
   });
 
   const PAGE_TIMEOUT = 120000;

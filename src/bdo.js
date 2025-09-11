@@ -53,7 +53,10 @@ const getDetails = async ({
   try {
     const url = `${DETAIL_URL}${path}`;
     
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.goto(url, {
+      waitUntil: 'networkidle2',
+      timeout: 120000,
+    });
 
     const selector = '.pmu-productfeature-container div.col div.text';
     await page.waitForSelector(selector);
