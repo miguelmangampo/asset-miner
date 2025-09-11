@@ -3,6 +3,7 @@
 import {
   initBrowserPage,
   isEqual,
+  fetchUnidici,
 } from './helpers.js';
 
 import {
@@ -104,19 +105,19 @@ const mergeData = async (dbData) => {
   let retries = 3; // Retry up to 3 times
   while (retries > 0) {
     try {
-      apiResponse = await fetch(`${LIST_URL}${makeParamLocations()}`);
+      apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`);
       break;
     } catch (error) {
       console.error(`Fetch failed, retrying in 5 seconds... (${retries} retries left)`, error);
       retries--;
-      await delay(30000);
+      await delay(5000);
       if (retries === 0) {
         throw new Error('Failed to fetch data after multiple retries.');
       }
     }
   }
 
-  const { repList = [] } = await apiResponse.json();
+  const { repList = [] } = apiResponse;
 
   let count = 1;
   for (const dt of repList) {

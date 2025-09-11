@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import puppeteer from "puppeteer";
 import _ from 'lodash'
+import { fetch as undiciFetch } from 'undici';
 import 'dotenv/config';
 
 // Setup Supabase client
@@ -38,8 +39,30 @@ const isEqual = (
   return _.isEqual(obj1Subset, obj2Subset);
 }
 
+const fetchUnidici = async (url) => {
+  try {
+    console.log("Trying undici fetch...");
+    const res = await undiciFetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.bdo.com.ph/personal/assets-for-sale/real-estate",
+      },
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Undici failed:", err.message);
+    return null
+  }
+};
+
 export {
   initBrowserPage,
   supabase,
   isEqual,
+  fetchUnidici,
 };

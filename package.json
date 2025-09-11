@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "node-cron": "^4.2.1",
     "node-fetch": "^3.3.2",
-    "puppeteer": "^24.19.0"
+    "puppeteer": "^24.19.0",
+    "undici": "^7.16.0"
   }
 }
