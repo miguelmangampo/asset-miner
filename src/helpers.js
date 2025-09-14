@@ -60,9 +60,12 @@ const fetchUnidici = async (url, referer) => {
   }
 };
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export {
   initBrowserPage,
   supabase,
   isEqual,
   fetchUnidici,
+  delay,
 };

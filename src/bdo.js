@@ -10,6 +10,7 @@ import {
   getBySourceId,
   insert,
   update,
+  markInActive,
 } from './realstate_items/index.js'
 
 const SOURCE_ID = 1;
@@ -100,6 +101,7 @@ const getDetails = async ({
 
 const mergeData = async (dbData) => {
   const dbMap = new Map(dbData.map(item => [item.link, item]));
+  const apiList = [];
   const apiResponse = await fetchUnidici(`${LIST_URL}${makeParamLocations()}`, REAL_STATE_URL);
   const { repList = [] } = apiResponse;
 
@@ -109,6 +111,7 @@ const mergeData = async (dbData) => {
     const thumbnail_url = `${BDO_URL}${image}`;
     const rsApiData = await getDetails({ path, thumbnail_url });
     const apiData = { ...rsApiData, source_id: SOURCE_ID };
+    apiList.push(apiData);
 
     await delay(500);
 
@@ -127,6 +130,8 @@ const mergeData = async (dbData) => {
     }
     count++;
   }
+
+  await markInActive(dbData, apiList);
 };
 
 export const startSync = async () => {
