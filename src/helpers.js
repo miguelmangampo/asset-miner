@@ -12,6 +12,15 @@ const supabase = createClient(
 
 const initBrowserPage = async(headless = true) => {
   const browser = await puppeteer.launch({
+    // headless: false,
+    // defaultViewport : { width: 1028, height: 1604 },
+    // args: [
+    //     '--disable-web-security',
+    //     '--disable-features=IsolateOrigins,site-per-process',
+    //     '--disable-blink-features=AutomationControlled',
+    //     '--incognito',
+    // ], // This settings is to enforce disabled headless browser
+
     headless,
     args: [
       '--no-sandbox',
