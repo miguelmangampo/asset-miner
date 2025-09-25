@@ -63,16 +63,17 @@ const getDetails = async () => {
         return {
           type: (divs[1].textContent || '').split(' ')[0],
           property_type: divs[1].textContent,
-          floor_area: Number.isNaN(floor) ? floor : 0,
-          lot_area: Number.isNaN(lot) ? lot : 0,
+          floor_area: !Number.isNaN(floor) ? floor : 0,
+          lot_area: !Number.isNaN(lot) ? lot : 0,
           location: divs[5].textContent,
           address: divs[6].textContent,
-          price: Number.isNaN(presyo) ? presyo : 0,
+          price: !Number.isNaN(presyo) ? presyo : 0,
           thumbnail_url: document.querySelector('.thumbnail-image-block.detailed img')?.src || '',
           description: document.querySelector('.content_card-title.detailed').textContent,
           link,
         };
       }, { link });
+
       console.log(`${logTemplate}${count}. Data found: `, detail.address)
       details.push(detail);
       count++;

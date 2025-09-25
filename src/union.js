@@ -10,7 +10,7 @@ const LOCATIONS = [
 ];
 
 const fetchData = async (page) => {
-    const response = await fetch(`https://www.unionbankph.com/api/fa/properties?page=${page}&min_bid_price=0&max_bid_price=0&type_of_property=&type_of_residential=&location=${LOCATIONS.join(',')}&city=&lot_area=0&floor_area=0&sort_by_price=`);
+    const response = await fetch(`https://www.unionbankph.com/api/fa/properties?page=${page}&min_bid_price=0&max_bid_price=0&type_of_property=&type_of_residential=&location=${LOCATIONS.join(',')}&city=&lot_area=0&floor_area=0&sort_by_price=lowest`);
     const data = await response.json();
     return data;
 };

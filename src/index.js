@@ -1,9 +1,9 @@
 import express from "express";
 import cron from "node-cron";
-// import { startSync } from './bdo.js';
-// import { startSync } from './metro.js';
-// import { startSync } from './union.js';
-import { startSync } from './eastwest.js';
+import { startSync as startBDO } from './bdo.js';
+import { startSync as startMetro } from './metro.js';
+import { startSync as startUnion } from './union.js';
+import { startSync as startEastWest } from './eastwest.js';
 
 // cron.schedule("0 */3 * * *", async () => {
 //   await startSync();
@@ -20,4 +20,7 @@ import { startSync } from './eastwest.js';
 // });
 // app.listen(3000, () => console.log("App started on port 3000"));
 
-startSync();
+// startBDO();
+// startMetro();
+startUnion();
+// startEastWest();

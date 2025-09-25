@@ -92,7 +92,7 @@ const mergeData = async(sourceId, dataList) => {
   for (const dataObj of dataList) {
     const dt = { ...dataObj, source_id: sourceId };
     const dbItem = dbMap.get(dt?.link); 
-    const log = `${dt?.property_type} -- ${dt?.type} -- ${dt?.address}`;
+    const log = `${dt?.property_type} -- ${dt?.type} -- ${dt?.address} -- ${dt?.link}`;
     const counterLabel = `${count}/${dataList?.length}. Source: ${sourceId}.`;
     if (!dbItem) {
       await insert(dt);
