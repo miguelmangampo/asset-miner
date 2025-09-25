@@ -4,6 +4,8 @@ import { startSync as startBDO } from './bdo.js';
 import { startSync as startMetro } from './metro.js';
 import { startSync as startUnion } from './union.js';
 import { startSync as startEastWest } from './eastwest.js';
+import { startSync as startSecurity } from './security.js';
+
 
 // cron.schedule("0 */3 * * *", async () => {
 //   await startSync();
@@ -20,7 +22,8 @@ import { startSync as startEastWest } from './eastwest.js';
 // });
 // app.listen(3000, () => console.log("App started on port 3000"));
 
-// startBDO();
-// startMetro();
-startUnion();
-// startEastWest();
+// await startBDO();
+// await startMetro();
+// await startUnion();
+// await startEastWest();
+await startSecurity();
