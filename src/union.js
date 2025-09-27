@@ -5,7 +5,7 @@ const SOURCE_ID = 4;
 
 const LOCATIONS = [
 //   'Davao',
-//   'Cavite',
+  'Cavite',
   'NCR',
 ];
 

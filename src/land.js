@@ -11,6 +11,8 @@ const SOURCE_ID = 6;
 const URLS = [ // Links generated from the website of Landbank dependng on the location, you may use their website to generate the links by location
   // NCR
   'https://www.landbank.com/properties-for-sale?ptype=MSAgICA%3D&preg=TkNSICA%3D&pprov=TU5MICA%3D&sellingprice=0&lotarea=0&floorarea=0&tctnumber=',
+  // Cavite
+  'https://www.landbank.com/properties-for-sale?ptype=MSAgICA%3D&preg=MDRBICA%3D&pprov=Q0FWICA%3D&sellingprice=0&lotarea=0&floorarea=0&tctnumber=',
 ];
 
 const logTemplate = `Source Id ${SOURCE_ID} `
@@ -27,9 +29,9 @@ const navigate = async (link, page, pageNo) => await page.goto(`${link}${pagePar
 const getDetails = async () => {
   const { browser, page } = await initBrowserPage();
   let details = [];
-  let pageNo = 1;
   try {
     for (const url of URLS) {
+      let pageNo = 1;
       await navigate(url, page, pageNo);
       await delay(2000);
 

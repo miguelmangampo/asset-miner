@@ -9,7 +9,7 @@ import { mergeData } from './realstate_items/index.js';
 
 const SOURCE_ID = 3;
 const MAIN_URL = 'https://pre-owned-properties.eastwestbanker.com';
-const NCR_FILTER = '/?location=NCR'
+const FILTER = '/?location=NCR%2CCavite'; // NCR & Cavite
 
 const logTemplate = `Source Id ${SOURCE_ID} `
 
@@ -22,7 +22,7 @@ const getDetails = async () => {
   const { browser, page } = await initBrowserPage();
   const details = [];
   try {
-    const url = `${MAIN_URL}${NCR_FILTER}`;
+    const url = `${MAIN_URL}${FILTER}`;
     await page.goto(url, gotoProps);
     await page.waitForSelector('.w-dyn-list'); // wait for main list
     await delay(2000);

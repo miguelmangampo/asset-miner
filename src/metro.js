@@ -5,7 +5,8 @@ import { mergeData } from './realstate_items/index.js';
 const SOURCE_ID = 2;
 
 const QUERY_STRINGS = [
-    'geographicalArea=NCR',
+  'geographicalArea=NCR',
+  'geographicalArea=04A&province=CAVIT',
 ];
 
 const getDetails = async (urlFilter) => {
