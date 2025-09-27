@@ -5,7 +5,7 @@ import { startSync as startMetro } from './metro.js';
 import { startSync as startUnion } from './union.js';
 import { startSync as startEastWest } from './eastwest.js';
 import { startSync as startSecurity } from './security.js';
-
+import { startSync as startLand } from './land.js';
 
 // cron.schedule("0 */3 * * *", async () => {
 //   await startSync();
@@ -26,4 +26,5 @@ import { startSync as startSecurity } from './security.js';
 // await startMetro();
 // await startUnion();
 // await startEastWest();
-await startSecurity();
+// await startSecurity();
+await startLand();
