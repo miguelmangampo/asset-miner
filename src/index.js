@@ -7,6 +7,7 @@ import { startSync as startEastWest } from './eastwest.js';
 import { startSync as startSecurity } from './security.js';
 import { startSync as startLand } from './land.js';
 import { startSync as startPagibig } from './pagibig.js';
+import { startSync as startPNB } from './pnb.js';
 
 // cron.schedule("0 */3 * * *", async () => {
 //   await startSync();
@@ -29,4 +30,5 @@ import { startSync as startPagibig } from './pagibig.js';
 // await startEastWest();
 // await startSecurity();
 // await startLand();
-await startPagibig();
+// await startPagibig();
+await startPNB();
