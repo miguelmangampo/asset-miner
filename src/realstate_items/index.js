@@ -9,7 +9,8 @@ import {
 
 const TABLE_NAME = 'realstate_items';
 
-
+// Note that the data is limited only to 1000 records to return;
+// Use "fetchAllRecords" if needs to query records more than 1k
 const getBySourceId = async (sourceId) => {
   const { data: dbData } = await supabase
     .from(TABLE_NAME)
@@ -18,6 +19,39 @@ const getBySourceId = async (sourceId) => {
     .eq('inactive', false);
   return dbData;
 }
+
+const fetchAllRecords = async (sourceId) => {
+  const BATCH_SIZE = 500;
+  let allRecords = [];
+  let offset = 0;
+  let data;
+  
+  do {
+    // Fetch a single batch of records
+    const response = await supabase
+      .from(TABLE_NAME)
+      .select('*')
+      .eq('source_id', sourceId)
+      .eq('inactive', false)
+      .range(offset, offset + BATCH_SIZE - 1);
+      
+    if (response.error) {
+      console.error('Error fetching batch:', response.error);
+      throw response.error;
+    }
+
+    data = response.data;
+    
+    // Add the fetched batch to the main array
+    if (data && data.length > 0) {
+      allRecords = allRecords.concat(data);
+      offset += BATCH_SIZE;
+    }
+
+  } while (data && data.length === BATCH_SIZE); // Keep fetching until a batch is smaller than BATCH_SIZE (i.e., we've reached the end)
+
+  return allRecords;
+};
 
 const insert = async (data) => {
   try {
@@ -85,7 +119,10 @@ const markInActive = async(dbList, apiList) => {
 };
 
 const mergeData = async(sourceId, dataList) => {
-  const dbList = await getBySourceId(sourceId);
+  const dbList = await fetchAllRecords(sourceId);
+
+  console.log('Queried data count ', dbList?.length || 0)
+
   let count = 1;
   const dbMap = new Map(dbList.map(item => [item.link, item]));
 

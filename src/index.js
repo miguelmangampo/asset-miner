@@ -30,5 +30,5 @@ import { startSync as startPNB } from './pnb.js';
 // await startEastWest();
 // await startSecurity();
 // await startLand();
-// await startPagibig();
-await startPNB();
+await startPagibig();
+// await startPNB();

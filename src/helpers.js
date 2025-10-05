@@ -71,10 +71,22 @@ const fetchUnidici = async (url, referer) => {
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+/**
+ * Encodes a raw string into a URL-friendly format 
+ * suitable for use as a query parameter value.
+ *
+ * @param {string} rawString The string to be encoded.
+ * @returns {string} The encoded string.
+ */ 
+const encodeStringUrl = (rawString) => {
+  return encodeURIComponent(rawString);
+}
+
 export {
   initBrowserPage,
   supabase,
   isEqual,
   fetchUnidici,
   delay,
+  encodeStringUrl,
 };

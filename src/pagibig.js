@@ -11,7 +11,7 @@ const PROPERTIES_URL = 'https://www.pagibigfundservices.com/OnlinePublicAuction/
 const REGION_IDS = [
    // NCR
   '130000000',
-  // Calabarzon
+   // Calabarzon
   '040000000',
 ];
 
@@ -93,16 +93,17 @@ const getScrapedData = async () => {
                     const lotArea = Number(p?.lot_area);
                     const floorArea = Number(p?.floor_area);
                     const imageRes = await getThumbnail(p?.ropa_id);
+                    const address = p?.prop_location || '';
                     const property = {
                         location: p?.city_muni || '',
-                        address: p?.prop_location || '',
+                        address,
                         lot_area: !Number.isNaN(lotArea) ? lotArea : 0,
                         floor_area: !Number.isNaN(floorArea) ? floorArea : 0,
                         price: !Number.isNaN(p?.min_sellprice) ? p?.min_sellprice : 0,
                         description: `TCT: ${p?.tct_cct_no || ''} -- ROPA ID: ${p?.ropa_id || ''} -- Email: ${p?.email_hbc || ''} -- Contact: ${p?.contact_hbc || ''}`,
                         type: 'Residential',
                         property_type: p?.prop_type || '',
-                        link: `https://www.pagibigfundservices.com/OnlinePublicAuction??pId=${p?.prop_location || ''}`,
+                        link: `https://www.pagibigfundservices.com/OnlinePublicAuction?ropa_id=${p?.ropa_id || ''}`,
                         thumbnail_url: imageRes,
                     };
                     console.log(property)
