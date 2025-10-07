@@ -111,8 +111,8 @@ const mergeData = async (dbData) => {
     const { path, image } = dt;
     const thumbnail_url = `${BDO_URL}${image}`;
     const rsApiData = await getDetails({ path, thumbnail_url });
-
-    if ((rsApiData?.offerType || '').toLowerCase().trim() !== 'lease') { // Process only not for leasing properties
+    // Process only not for leasing properties
+    if ((rsApiData?.offerType || '').toLowerCase().trim() !== 'lease') {
       const apiData = { ...rsApiData, source_id: SOURCE_ID };
       apiList.push(apiData);
       await delay(500);
