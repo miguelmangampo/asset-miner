@@ -85,6 +85,7 @@ const getDetails = async ({
         price: getValue(3, 'price'),
         description: getValue(4),
         type: getValue(5),
+        offerType: getValue(6),
       };
     }, locations);
     scrapedData.property_type = propertyType;
@@ -110,25 +111,26 @@ const mergeData = async (dbData) => {
     const { path, image } = dt;
     const thumbnail_url = `${BDO_URL}${image}`;
     const rsApiData = await getDetails({ path, thumbnail_url });
-    const apiData = { ...rsApiData, source_id: SOURCE_ID };
-    apiList.push(apiData);
 
-    await delay(500);
-
-    if (rsApiData) {
-      const dbItem = dbMap.get(apiData?.link);
-      const log = `${apiData?.property_type} -- ${apiData?.type} -- ${apiData?.address}`;
-      if (!dbItem) {
-        await insert(apiData);
-        console.log(`${count}. Inserted: `, log)
-      } else if (!isEqual(dbItem, apiData)) {
-        await update(apiData);
-        console.log(`${count}. Updated: `, log)
-      } else {
-        console.log(`${count}. Existing: `, log)
+    if ((rsApiData?.offerType || '').toLowerCase().trim() !== 'lease') { // Process only not for leasing properties
+      const apiData = { ...rsApiData, source_id: SOURCE_ID };
+      apiList.push(apiData);
+      await delay(500);
+      if (rsApiData) {
+        const dbItem = dbMap.get(apiData?.link);
+        const log = `${apiData?.property_type} -- ${apiData?.type} -- ${apiData?.address}`;
+        if (!dbItem) {
+          await insert(apiData);
+          console.log(`${count}. Inserted: `, log)
+        } else if (!isEqual(dbItem, apiData)) {
+          await update(apiData);
+          console.log(`${count}. Updated: `, log)
+        } else {
+          console.log(`${count}. Existing: `, log)
+        }
       }
+      count++;
     }
-    count++;
   }
 
   await markInActive(dbData, apiList);
